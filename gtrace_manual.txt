@@ -1,0 +1,27 @@
+Gtrace Manaul
+
+Gtrace is a x86-64 tracing utility program for linux.
+Gtrace outputs all system calls, library calls, and internal calls made
+by a program at runtime. The output is a shown heirarchally to show
+the caller callee relationship between functions. Functions arguements and
+return values will be shown with the functions when output. If the number of 
+arguements cannot be determined then Gtrace will output all six registers used 
+to pass arguements on x86-64. If Dwarf debug information is available Gtrace will 
+use this data to get the number of arguements and arguement names for functions.
+This makes for a cleaner output.
+
+Command Line Options
+The following our the command line options for Gtrace.
+
+--timestamps / -t : Provides a timestamp on each line of output
+                    corresponding to the time the function being traced
+                    was called.
+--outfile / -o : Takes a file path as an arguement and outputs to the
+                 given file instead of standard out.
+--help / -h : Provides information on how to use the tool.
+--aggressive / -a : Takes the number of bytes to dump for function arguements.
+                    If a function arguement is a pointer then the provided number
+                    of bytes will be read from the pointer and output in stdout.
+
+Example:
+    gtrace --outfile=trace.txt --timestamps --aggressive=64 ./hello_world
